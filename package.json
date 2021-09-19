@@ -1,16 +1,61 @@
 {
-  "name": "weatherelectronjs",
+  "name": "weather",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "devDependencies": {
+    "electron-builder": "^22.11.7",
+    "@electron-forge/maker-deb": "^6.0.0-beta.61",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
+    "@electron-forge/maker-zip": "^6.0.0-beta.61",
     "electron": "^14.0.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "dist": "electron-builder",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "package-win": "electron-packager . weather --overwrite --asar=true --all --icon=icon.ico --prune=true --out=release-builds",
+    "make": "electron-forge make"
   },
   "author": "Dmitrii.Kechin@gmail.com",
-  "license": "ISC"
+  "license": "ISC",
+  "build": {
+    "appId": "your.id",
+    "icon": "icon.ico",
+    "mac": {
+      "category": "your.app.category.type"
+    }
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "weatherelectronjs"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
 }
