@@ -7,6 +7,7 @@ function createWindow() {
     width: 600,
     height: 850,
     icon: __dirname + '/icon.ico',
+    minimizable: false,
     transparent: true,
     frame: false,
     webPreferences: {
