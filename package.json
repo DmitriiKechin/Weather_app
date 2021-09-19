@@ -1,0 +1,16 @@
+{
+  "name": "weatherelectronjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^14.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "Dmitrii.Kechin@gmail.com",
+  "license": "ISC"
+}

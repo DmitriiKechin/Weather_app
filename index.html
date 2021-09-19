@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/hours.css" />
+    <link rel="stylesheet" href="css/day.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="window">
+      <button class="window__close window-button">
+        <svg
+          class="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 48 48"
+        >
+          <path
+            d="M 39.486328 6.9785156 A 1.50015 1.50015 0 0 0 38.439453 7.4394531 L 24 21.878906 L 9.5605469 7.4394531 A 1.50015 1.50015 0 0 0 8.484375 6.984375 A 1.50015 1.50015 0 0 0 7.4394531 9.5605469 L 21.878906 24 L 7.4394531 38.439453 A 1.50015 1.50015 0 1 0 9.5605469 40.560547 L 24 26.121094 L 38.439453 40.560547 A 1.50015 1.50015 0 1 0 40.560547 38.439453 L 26.121094 24 L 40.560547 9.5605469 A 1.50015 1.50015 0 0 0 39.486328 6.9785156 z"
+          ></path>
+        </svg>
+      </button>
+      <button class="window__update window-button">
+        <svg
+          class="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M 12 3 C 9.5110102 3 7.1735459 4.0349773 5.4980469 5.7910156 L 3.8535156 4.1464844 C 3.6585156 3.9514844 3.3414844 3.9514844 3.1464844 4.1464844 C 3.0494844 4.2444844 3 4.372 3 4.5 L 3 9 A 1 1 0 0 0 4 10 L 8.5 10 C 8.628 10 8.7565156 9.9515156 8.8535156 9.8535156 C 9.0485156 9.6585156 9.0485156 9.3414844 8.8535156 9.1464844 L 6.9140625 7.2070312 C 8.2196399 5.820863 10.049247 5 12 5 C 15.52 5 18.502453 7.6320469 18.939453 11.123047 C 19.002453 11.629047 19.432688 12 19.929688 12 C 19.970688 12 20.012687 11.998187 20.054688 11.992188 C 20.602688 11.924188 20.991828 11.424953 20.923828 10.876953 C 20.362828 6.3869531 16.526 3 12 3 z M 3.9453125 12.007812 C 3.3973125 12.075812 3.0071719 12.575047 3.0761719 13.123047 C 3.6371719 17.613047 7.474 21 12 21 C 14.48642 21 16.807752 19.987199 18.5 18.207031 L 20.146484 19.853516 C 20.341484 20.048516 20.658516 20.048516 20.853516 19.853516 C 20.950516 19.755516 21 19.628 21 19.5 L 21 15 A 1 1 0 0 0 20 14 L 15.5 14 C 15.372 14 15.243484 14.048484 15.146484 14.146484 C 14.951484 14.341484 14.951484 14.658516 15.146484 14.853516 L 17.085938 16.792969 C 15.766846 18.198726 13.949132 19 12 19 C 8.48 19 5.4975469 16.367953 5.0605469 12.876953 C 4.9925469 12.328953 4.4893125 11.936813 3.9453125 12.007812 z"
+          ></path>
+        </svg>
+      </button>
+      <button class="window__stretch window-button">
+        <svg
+          class="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 48 48"
+        >
+          <path
+            d="M 11.5 6 C 8.4802259 6 6 8.4802259 6 11.5 L 6 36.5 C 6 39.519774 8.4802259 42 11.5 42 L 36.5 42 C 39.519774 42 42 39.519774 42 36.5 L 42 11.5 C 42 8.4802259 39.519774 6 36.5 6 L 11.5 6 z M 11.5 9 L 36.5 9 C 37.898226 9 39 10.101774 39 11.5 L 39 36.5 C 39 37.898226 37.898226 39 36.5 39 L 11.5 39 C 10.101774 39 9 37.898226 9 36.5 L 9 11.5 C 9 10.101774 10.101774 9 11.5 9 z M 34.470703 11.986328 A 1.50015 1.50015 0 0 0 34.308594 12 L 27.5 12 A 1.50015 1.50015 0 1 0 27.5 15 L 30.878906 15 L 15 30.878906 L 15 27.5 A 1.50015 1.50015 0 1 0 12 27.5 L 12 34.310547 A 1.50015 1.50015 0 0 0 13.691406 36 L 20.5 36 A 1.50015 1.50015 0 1 0 20.5 33 L 17.121094 33 L 33 17.121094 L 33 20.5 A 1.50015 1.50015 0 1 0 36 20.5 L 36 13.689453 A 1.50015 1.50015 0 0 0 34.470703 11.986328 z"
+          ></path>
+        </svg>
+      </button>
+      <div class="weather">
+        <div class="weather__day">
+          <button class="arrow-left" id="weather__day_arrow-left"></button>
+          <div class="weather__day-slider" id="day-slider">
+            <div class="weather__city-update">
+              <div class="weather__day-title" id="day-title">Сейчас</div>
+              <div class="weather__city" id="city">null</div>
+              <div class="city-search" id="city-search">
+                <div class="city-search__input-wrapper">
+                  <input
+                    type="text"
+                    autocomplete="off"
+                    class="city-search__input"
+                    id="city-input"
+                  />
+                  <button class="city-search__button">Ok</button>
+                </div>
+                <div class="city-search__help" data-index="0"></div>
+                <div class="city-search__help" data-index="1"></div>
+                <div class="city-search__help" data-index="2"></div>
+              </div>
+              <div class="weather__time-update" id="time-update">
+                19:00 35.15
+              </div>
+              <div></div>
+            </div>
+          </div>
+          <button class="arrow-right" id="weather__day_arrow-rigth"></button>
+        </div>
+
+        <div class="weather__minutes" id="weather-minutes">
+          Осадков в ближайший час не ожидается
+        </div>
+
+        <div class="weather__hours" id="weather-hours">
+          <button class="arrow-left"></button>
+          <button
+            class="weather__hours-cancel window-button"
+            id="button-hours-cancel"
+            hidden
+          >
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 30 30"
+            >
+              <path
+                d="M 10 3 L 4 9 L 10 15 L 10 11 L 17 11 C 19.785124 11 22 13.214876 22 16 C 22 18.785124 19.785124 21 17 21 L 14 21 A 2.0002 2.0002 0 1 0 14 25 L 17 25 C 21.67453 25 25.431086 21.342021 25.84375 16.769531 A 2.0002 2.0002 0 0 0 26 16 C 26 11.053124 21.946876 7 17 7 L 10 7 L 10 3 z"
+              ></path>
+            </svg>
+          </button>
+          <div class="weather__hours-content" id="hours-content"></div>
+          <button class="arrow-right"></button>
+        </div>
+
+        <div class="weather__air" id="weather-air">
+          <div class="weather__air-aqi">AQI 2</div>
+          <div class="weather__air-matrix">
+            <div class="value">CO</div>
+            <div class="value">12%</div>
+            <div class="value">NO</div>
+            <div class="value">23%</div>
+            <div class="value">NO<span class="subscript"> 2</span></div>
+            <div class="value">34%</div>
+            <div class="value">O<span class="subscript"> 3</span></div>
+            <div class="value">78%</div>
+            <div class="value">SO<span class="subscript"> 2</span></div>
+            <div class="value">54%</div>
+            <div class="value">PM<span class="subscript"> 2.5</span></div>
+            <div class="value">11%</div>
+            <div class="value">PM<span class="subscript"> 10</span></div>
+            <div class="value">22%</div>
+            <div class="value">NH<span class="subscript"> 3</span></div>
+            <div class="value">55%</div>
+          </div>
+        </div>
+        <div class="weather__alerts" id="weather-alerts"></div>
+      </div>
+
+      <div class="date">
+        <div class="date__watch"></div>
+        <div class="data__week-day"></div>
+      </div>
+    </div>
+
+    <script type="module" src="scripts/script.js"></script>
+  </body>
+</html>
