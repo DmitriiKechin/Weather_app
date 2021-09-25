@@ -1,10 +1,10 @@
 import { Weather } from './weather.js';
 import {
-  dayArrowRigth,
-  dayArrowLeft,
+  dayArrow,
   hoursClick,
   clickCity,
   decoding,
+  activeDayReset,
 } from './UI.js';
 const API_KEY = decoding(
   '3e5a3a5c6631675d3e2c392e665e6a2937316b5c695f392f665a352b37296630'
@@ -26,12 +26,6 @@ const timeUpdate = document.getElementById('time-update');
 export const hoursContent = document.getElementById('hours-content');
 const city = document.getElementById('city');
 
-city.textContent = localStorage.getItem('city');
-
-if (!city?.firstChild?.data) {
-  city.textContent = 'Торонто';
-}
-
 buttonClose.addEventListener('click', () => {
   const windowSizes = {
     x: window.screenX,
@@ -47,6 +41,7 @@ buttonClose.addEventListener('click', () => {
 });
 
 const upDateDate = function () {
+  activeDayReset();
   weather.update(JSON.parse(localStorage.getItem('responseData')));
   daySlider.lastChild.remove();
   daySlider.append(weather.dayContext);
@@ -56,6 +51,7 @@ const upDateDate = function () {
   hoursContent.append(weather.hoursContext);
   weatherAlerts.innerHTML = weather.getAlerts;
 };
+
 const upDateAir = function () {
   weather.updateAir(JSON.parse(localStorage.getItem('responseAir')));
   weatherAir.innerHTML = weather.getAir(0);
@@ -88,8 +84,8 @@ async function requestWeather(urlData, urlAir) {
 
 export function upDate() {
   buttonUpdate.style.animationName = 'rotate';
-  let latitude = localStorage.getItem('latitude');
-  let longitude = localStorage.getItem('longitude');
+  let latitude = +localStorage.getItem('latitude');
+  let longitude = +localStorage.getItem('longitude');
 
   if (!latitude) {
     latitude = 43.70011;
@@ -99,15 +95,30 @@ export function upDate() {
     longitude = -79.4163;
   }
 
+  city.textContent = localStorage.getItem('city');
+
+  if (!city?.firstChild?.data) {
+    city.textContent = 'Торонто';
+  }
+
   const urlData = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}&lang=ru`;
 
   const urlAir = `http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
 
-  if (localStorage.getItem('responseData')) {
-    upDateDate();
-  }
+  const isJson = (json) => {
+    try {
+      JSON.parse(json);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
 
-  if (localStorage.getItem('responseAir')) {
+  if (
+    isJson(localStorage.getItem('responseData')) &&
+    isJson(localStorage.getItem('responseAir'))
+  ) {
+    upDateDate();
     upDateAir();
   }
 
@@ -158,8 +169,12 @@ const resizeWindow = (event) => {
 
 buttonStretch.addEventListener('mousedown', resizeWindow);
 
-arrowRigthDay.addEventListener('click', dayArrowRigth);
-arrowLeftDay.addEventListener('click', dayArrowLeft);
+arrowRigthDay.addEventListener('click', (event) => {
+  dayArrow('right', event);
+});
+arrowLeftDay.addEventListener('click', (event) => {
+  dayArrow('left', event);
+});
 weatherHours.addEventListener('click', hoursClick);
 buttonUpdate.addEventListener('click', upDate);
 city.addEventListener('click', clickCity);

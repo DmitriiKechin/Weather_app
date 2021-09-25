@@ -5,7 +5,13 @@ import {
   weatherAir,
   upDate,
 } from './script.js';
-export let activeDay = 0;
+let activeDay = 0;
+const dayTitle = document.getElementById('day-title');
+
+export const activeDayReset = () => {
+  activeDay = 0;
+  dayTitle.textContent = weather.dayTitle(activeDay);
+};
 
 function initSlider(slides, slider) {
   const styleSlider = window.getComputedStyle(slider);
@@ -23,34 +29,27 @@ function initSlider(slides, slider) {
   return { slidesOffsetLeft, sliderWidth };
 }
 
-export function dayArrowRigth() {
-  this.disabled = true;
+export function dayArrow(direction, event) {
+  event.target.disabled = true;
   const slides = document.getElementById('daysslides');
   const slider = document.getElementById('day-slider');
-  const dayTitle = document.getElementById('day-title');
-  const { slidesOffsetLeft, sliderWidth } = initSlider(slides, slider);
-  if (slidesOffsetLeft > -slides.clientWidth + sliderWidth * 1.5) {
-    activeDay++;
-    slides.style.left = slidesOffsetLeft - sliderWidth + 'px';
-    dayTitle.textContent = weather.dayTitle(activeDay);
-  }
-
-  setTimeout(() => (this.disabled = false), 310);
-}
-
-export function dayArrowLeft() {
-  this.disabled = true;
-  const slides = document.getElementById('daysslides');
-  const slider = document.getElementById('day-slider');
-  const dayTitle = document.getElementById('day-title');
   const { slidesOffsetLeft, sliderWidth } = initSlider(slides, slider);
 
-  if (slidesOffsetLeft < -sliderWidth * 0.5) {
-    activeDay--;
-    slides.style.left = slidesOffsetLeft + sliderWidth + 'px';
-    dayTitle.textContent = weather.dayTitle(activeDay);
+  if (direction === 'right') {
+    if (slidesOffsetLeft > -slides.clientWidth + sliderWidth * 1.5) {
+      activeDay++;
+      slides.style.left = slidesOffsetLeft - sliderWidth + 'px';
+      dayTitle.textContent = weather.dayTitle(activeDay);
+    }
+  } else {
+    if (slidesOffsetLeft < -sliderWidth * 0.5) {
+      activeDay--;
+      slides.style.left = slidesOffsetLeft + sliderWidth + 'px';
+      dayTitle.textContent = weather.dayTitle(activeDay);
+    }
   }
-  setTimeout(() => (this.disabled = false), 310);
+
+  setTimeout(() => (event.target.disabled = false), 310);
 }
 
 export function hoursClick(event) {
@@ -110,6 +109,7 @@ export function hoursClick(event) {
       this.hidden = true;
       this.dataset.isDetails = false;
       weatherAir.classList.remove('hidden');
+      weatherAir.innerHTML = weather.getAir(0);
       weatherAlerts.hidden = false;
       hoursContent.innerHTML = '';
       hoursContent.append(weather.hoursContext);
@@ -153,10 +153,15 @@ export function clickCity() {
 
     if (cardHelp) {
       this.textContent = dataHelp.suggestions[cardHelp.dataset.index].data.city;
-      localStorage.setItem(
-        'city',
-        dataHelp.suggestions[cardHelp.dataset.index].data.city
-      );
+      if (dataHelp.suggestions[cardHelp.dataset.index].data.city) {
+        localStorage.setItem(
+          'city',
+          dataHelp.suggestions[cardHelp.dataset.index].data.city
+        );
+      } else {
+        localStorage.setItem('city', 'Не верный адресс');
+      }
+
       localStorage.setItem(
         'latitude',
         dataHelp.suggestions[cardHelp.dataset.index].data.geo_lat
@@ -169,7 +174,7 @@ export function clickCity() {
     }
   };
 
-  const inputText = () => {
+  const inputText = decoratorDebounce(() => {
     const text = cityInput.value;
 
     if (text.length > 2) {
@@ -184,7 +189,7 @@ export function clickCity() {
       });
       citySearch.style.height = 6 * 1.5 + 'rem';
     }
-  };
+  }, 1500);
 
   citySearch.addEventListener('click', citySearchClick);
 
@@ -248,6 +253,16 @@ export function decoding(text) {
     index++;
   }
   return textOut;
+}
+
+function decoratorDebounce(func, delay) {
+  let timerId;
+  return function (...args) {
+    clearTimeout(timerId);
+    timeout = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
 }
 /*
 function coding(text) {
