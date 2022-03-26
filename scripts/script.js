@@ -106,6 +106,10 @@ export function upDate() {
   const urlAir = `http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
 
   const isJson = (json) => {
+    if (!json) {
+      return false;
+    }
+
     try {
       JSON.parse(json);
       return true;
