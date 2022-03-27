@@ -152,12 +152,12 @@ export function clickCity() {
     }
 
     if (cardHelp) {
-      this.textContent = dataHelp.suggestions[cardHelp.dataset.index].data.city;
-      if (dataHelp.suggestions[cardHelp.dataset.index].data.city) {
-        localStorage.setItem(
-          'city',
-          dataHelp.suggestions[cardHelp.dataset.index].data.city
-        );
+      this.textContent =
+        dataHelp.suggestions[cardHelp.dataset.index].data.city ||
+        dataHelp.suggestions[cardHelp.dataset.index].data.settlement;
+
+      if (this.textContent) {
+        localStorage.setItem('city', this.textContent);
       } else {
         localStorage.setItem('city', 'Не верный адресс');
       }
@@ -259,7 +259,7 @@ function decoratorDebounce(func, delay) {
   let timerId;
   return function (...args) {
     clearTimeout(timerId);
-    timeout = setTimeout(() => {
+    timerId = setTimeout(() => {
       func.apply(this, args);
     }, delay);
   };
