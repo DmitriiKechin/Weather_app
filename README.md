@@ -29,3 +29,5 @@ Weather API from [Openweathermap](https://openweathermap.org/);
 Geocoder API from [DaData](https://dadata.ru/).  
 Screenshot:  
 ![](https://github.com/DmitriiKechin/Weather_app/blob/master/screenshot.jpg)
+Gif:
+![](https://github.com/DmitriiKechin/Weather_app/blob/master/Weather.gif)
