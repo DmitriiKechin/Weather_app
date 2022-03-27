@@ -1,4 +1,4 @@
-# Приложение погоды ver. 1.0
+# Приложение погоды ver. 1.1
 
 Приложение используется как виджет рабочего стола;  
 Прозрачный интерфейс;  
@@ -10,6 +10,8 @@ API погоды от [Openweathermap](https://openweathermap.org/);
 API геокодера от [DaData](https://dadata.ru/).  
 Скриншот:  
 ![](https://github.com/DmitriiKechin/Weather_app/blob/master/screenshot.jpg)
+Гиф анимация работы интерфейса:
+![](https://github.com/DmitriiKechin/Weather_app/blob/master/Weather.gif)
 
 ---
 
@@ -17,7 +19,7 @@ API геокодера от [DaData](https://dadata.ru/).
 
 ---
 
-## Weather app ver. 1.0
+## Weather app ver. 1.1
 
 The application is used as a desktop widget;  
 Transparent interface;  
