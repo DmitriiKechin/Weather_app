@@ -26,19 +26,12 @@ const timeUpdate = document.getElementById('time-update');
 export const hoursContent = document.getElementById('hours-content');
 const city = document.getElementById('city');
 
-buttonClose.addEventListener('click', () => {
-  const windowSizes = {
-    x: window.screenX,
-    y: window.screenY,
-    height: window.outerHeight,
-    width: window.outerWidth,
-  };
-  localStorage.setItem('windowSizes', JSON.stringify(windowSizes));
-
+const fakeResize = () => {
   setTimeout(() => {
-    window.close();
-  });
-});
+    window.resizeBy(0, 1);
+    window.resizeBy(0, -1);
+  }, 330);
+};
 
 const upDateDate = function () {
   activeDayReset();
@@ -130,7 +123,10 @@ export function upDate() {
     upDateDate();
     upDateAir();
     buttonUpdate.style.animationName = 'null';
+    fakeResize();
   });
+
+  fakeResize();
 }
 
 function windowStart() {
@@ -182,3 +178,25 @@ arrowLeftDay.addEventListener('click', (event) => {
 weatherHours.addEventListener('click', hoursClick);
 buttonUpdate.addEventListener('click', upDate);
 city.addEventListener('click', clickCity);
+
+buttonClose.addEventListener('click', () => {
+  const windowSizes = {
+    x: window.screenX,
+    y: window.screenY,
+    height: window.outerHeight,
+    width: window.outerWidth,
+  };
+  localStorage.setItem('windowSizes', JSON.stringify(windowSizes));
+
+  setTimeout(() => {
+    window.close();
+  });
+});
+
+window.addEventListener('click', () => {
+  fakeResize();
+});
+
+window.addEventListener('load', () => {
+  fakeResize();
+});
