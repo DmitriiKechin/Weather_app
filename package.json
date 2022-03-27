@@ -17,15 +17,26 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dist": "electron-builder",
-    "start": "electron ."
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps"
   },
   "author": "Dmitrii.Kechin@gmail.com",
   "license": "ISC",
   "build": {
-    "appId": "your.id",
-    "icon": "icon.ico",
-    "mac": {
-      "category": "your.app.category.type"
+    "appId": "Weather",
+    "win": {
+      "icon": "icon.ico",
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "installDisplayName": "Weather-installer",
+      "license": "license.md",
+      "allowToChangeInstallationDirectory": true
     }
   },
   "config": {
