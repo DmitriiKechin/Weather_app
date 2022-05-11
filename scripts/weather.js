@@ -1413,6 +1413,10 @@ c-0.29,0-0.53-0.09-0.72-0.28C15.75,9.98,15.65,9.75,15.65,9.48z"
   }
 
   get minutesContext() {
+    if (!this.#data.minutely) {
+      return 'данных нет';
+    }
+
     let minutesGraph = '';
     let height;
     const width = 100 / this.#data.minutely.length;
@@ -1423,10 +1427,10 @@ c-0.29,0-0.53-0.09-0.72-0.28C15.75,9.98,15.65,9.75,15.65,9.48z"
         isNonePrecipitation = false;
       }
 
-      if (element.precipitation > 15) {
+      if (element.precipitation > 8) {
         height = 100;
       } else {
-        height = (100 * element.precipitation) / 15;
+        height = (100 * element.precipitation) / 8;
       }
 
       minutesGraph += `<div style="margin-right:1px; background-color: white; width:calc(${width}% - 1px); height:${height}%; "></div>`;

@@ -67,12 +67,16 @@ async function requestWeather(urlData, urlAir) {
     return content;
   }
 
-  const responseData = fetchAndDecode(urlData);
-  const responseAir = fetchAndDecode(urlAir);
+  try {
+    const responseData = fetchAndDecode(urlData);
+    const responseAir = fetchAndDecode(urlAir);
 
-  const values = await Promise.allSettled([responseData, responseAir]);
-  localStorage.setItem('responseData', values[0].value);
-  localStorage.setItem('responseAir', values[1].value);
+    const values = await Promise.allSettled([responseData, responseAir]);
+    localStorage.setItem('responseData', values[0].value);
+    localStorage.setItem('responseAir', values[1].value);
+  } catch (err) {
+    throw new Error(err.massage || 'ошибка запроса');
+  }
 }
 
 export function upDate() {
@@ -119,14 +123,18 @@ export function upDate() {
     upDateAir();
   }
 
-  requestWeather(urlData, urlAir).then(() => {
-    upDateDate();
-    upDateAir();
-    buttonUpdate.style.animationName = 'null';
-    fakeResize();
-  });
-
-  fakeResize();
+  requestWeather(urlData, urlAir)
+    .then(() => {
+      upDateDate();
+      upDateAir();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      buttonUpdate.style.animationName = 'null';
+      fakeResize();
+    });
 }
 
 function windowStart() {
